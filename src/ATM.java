@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -13,5 +14,8 @@ public class ATM {
             person.chooseOptions();
         }
     }
+
+    HashMap<String,Object> user = new HashMap<>();
+
 }
 
