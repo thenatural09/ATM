@@ -22,7 +22,7 @@ public class Person {
 
     void enterUsername() throws Exception {
         System.out.println("Enter username:");
-        name = ATM.scanner.nextLine();
+        name = ATM.customLine();
 
         if (ATM.users.containsKey(name)) {
             Person p = new Person(name,"mypassword");
@@ -32,7 +32,7 @@ public class Person {
         }
         else if(!ATM.users.containsKey(name)) {
             System.out.println("User does not exist. Please choose a username");
-            name = ATM.scanner.nextLine();
+            name = ATM.customLine();
             if(name.equalsIgnoreCase("")) {
                 throw new Exception("Please enter a valid username");
             }
@@ -44,7 +44,7 @@ public class Person {
     void chooseOptions() throws Exception {
         while(keepRunning) {
             System.out.println("1.Check my balance, 2.Withdraw funds, 3.Cancel");
-            option = ATM.scanner.nextLine();
+            option = ATM.customLine();
             if (option.equalsIgnoreCase("withdraw funds")) {
                 System.out.println("Enter withdrawal amount");
                 String withdrawal = ATM.scanner.nextLine();
@@ -60,6 +60,11 @@ public class Person {
 
         }
         if (option.equalsIgnoreCase("cancel")) {
+            System.out.println("Would you like to delete your account? Type yes or no");
+            option = ATM.customLine();
+            if(option.equalsIgnoreCase("yes")) {
+                names.remove(name);
+            }
             break;
         }
         }
@@ -71,7 +76,7 @@ public class Person {
 
     void choosePassword() throws Exception {
         System.out.println("Please choose a password");
-        String password = ATM.scanner.nextLine();
+        String password = ATM.customLine();
         if(password.equalsIgnoreCase("")) {
             throw new Exception("Please start again and enter valid password");
         }
