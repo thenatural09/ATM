@@ -25,14 +25,14 @@ public class Person {
         name = ATM.customLine();
 
         if (ATM.users.containsKey(name)) {
-            Person p = new Person(name,"mypassword");
-            ATM.users.put(name, p);
             Person person = ATM.users.get(name);
             System.out.println("Logged in as: " + person.name);
         }
         else if(!ATM.users.containsKey(name)) {
             System.out.println("User does not exist. Please choose a username");
             name = ATM.customLine();
+            Person q = new Person(name, "mypassword");
+            ATM.users.put(name, q);
             if(name.equalsIgnoreCase("")) {
                 throw new Exception("Please enter a valid username");
             }
