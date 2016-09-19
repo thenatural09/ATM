@@ -5,27 +5,48 @@ import java.util.Scanner;
  * Created by Troy on 9/14/16.
  */
 public class ATM {
+
     static Scanner scanner = new Scanner(System.in);
     static boolean keepRunning = true;
+    static Person person = new Person("Troy", "Baseball");
     static HashMap<String, Person> users = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
-        users.put("Alice", new Person("Alice", "helpme"));
-        users.put("Bob", new Person("Bob", "thissucks"));
 
         Scanner scanner = new Scanner(System.in);
-
-            Person person = new Person("Troy","Baseball");
+        while(keepRunning) {
             person.enterUsername();
             person.choosePassword();
-        while (keepRunning) {
             person.chooseOptions();
         }
+        keepRunning = false;
+    }
+
+
+    static String customLine() {
+        String line = scanner.nextLine();
+        while(line.startsWith("/")){
+            switch(line) {
+                case "/exit":
+                    System.exit(0);
+                    break;
+                case "/user":
+                    for(String name : person.names) {
+                        System.out.println(name);
+                        System.out.println(Person.balance);
+                    }
+                    if (person.names.isEmpty()) {
+                        System.out.println("There are no accounts");
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid Command");
+                    break;
+            }
+            line = scanner.nextLine();
+        }
+        return line;
     }
 }
 
-//      Person person = new Person();
-//        person.chooseName();
-//        while(keepRunning) {
-//        person.chooseOptions();
 
